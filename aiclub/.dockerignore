@@ -1,0 +1,32 @@
+.next
+# Node junk
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build output
+.next
+out
+dist
+.cache
+
+# Docker and Compose files
+Dockerfile
+docker-compose.yml
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Git & project meta
+.git
+.gitignore
+.vscode
+.idea
+
+# OS junk
+.DS_Store
+Thumbs.db

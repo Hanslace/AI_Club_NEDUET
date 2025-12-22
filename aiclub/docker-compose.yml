@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: aiclub-nextjs
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    command: sh -c "npx prisma migrate deploy && npm run start"
+

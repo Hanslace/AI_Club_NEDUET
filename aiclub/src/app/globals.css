@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  /* 🎨 Colors */
+  --background: hsl(38, 36%, 96%);
+  --foreground: #3B0A57;
+  --primary1: #3B0A57;
+  --primary2: #FF5733;
+  --secondary1: #808080;
+  --secondary2: #D9D9D9;
+
+  /* 🟢 Radii */
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+
+  /* ✴️ Fonts */
+  --font-poppins: "Poppins", sans-serif;
+  --font-spaceGrotesk: "Space Grotesk", sans-serif;
+}
+
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary1: var(--primary1);
+  --color-primary2: var(--primary2);
+  --color-secondary1: var(--secondary1);
+  --color-secondary2: var(--secondary2);
+
+  /* Radii */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  /* Fonts */
+  --font-sans: var(--font-poppins);
+  --font-heading: var(--font-spaceGrotesk);
+}
+
+/* Optional Dark Mode
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
