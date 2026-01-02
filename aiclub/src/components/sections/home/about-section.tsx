@@ -1,6 +1,6 @@
 "use client";
 
-import {Card1} from "@/../components";
+import {AboutCard} from "@/components";
 
 export default function AboutSection() {
   const cards = [
@@ -40,7 +40,7 @@ export default function AboutSection() {
       {/* 🧠 Cards */}
       <div className="flex flex-col lg:flex-row justify-center items-stretch gap-[5vw] mt-[8vh] w-full max-w-[1300px]">
         {cards.map((card, idx) => (
-          <Card1 key={idx} {...card} />
+          <AboutCard key={idx} {...card} />
         ))}
       </div>
     </section>

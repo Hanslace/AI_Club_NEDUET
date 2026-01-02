@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 
+
 interface Card1Props {
   imageName: string;
   title: string;
@@ -9,7 +10,7 @@ interface Card1Props {
   description: string;
 }
 
-export default function Card1({ imageName, title, subtitle, description }: Card1Props) {
+export default function AboutCard({ imageName, title, subtitle, description }: Card1Props) {
   const imageSrc = `/images/${imageName}`;
 
   return (

@@ -3,29 +3,28 @@
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
 
-interface Card4Props {
-  imageName: string;
+interface TeamMemberCardProps {
+  imageUrl: string;
   name: string;
   role: string;
   description?: string;
   linkedinUrl?: string;
 }
 
-export default function Card4({
-  imageName,
+export default function TeamMemberCard({
+  imageUrl,
   name,
   role,
   description,
   linkedinUrl,
-}: Card4Props) {
-  const imageSrc = `/images/${imageName}`;
+}: TeamMemberCardProps) {
 
   return (
     <div className="group relative w-[301px] h-[400px] border border-[#D9D9D9] rounded-[10px_25px_25px_25px] overflow-hidden transition-all duration-500 hover:shadow-lg">
       {/* 🖼️ Profile Picture */}
       <div className="relative w-full h-[306px] overflow-hidden">
         <Image
-          src={imageSrc}
+          src={imageUrl}
           alt={name}
           width={476}
           height={317}

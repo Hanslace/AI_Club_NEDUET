@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Navbar , Footer} from "@/../components";
+import { Navbar , Footer} from "@/components";
 
 import { Poppins, Space_Grotesk } from "next/font/google";
 

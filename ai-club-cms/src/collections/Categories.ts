@@ -1,7 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
-export const Media: CollectionConfig = {
-  slug: 'media',
+export const Categories: CollectionConfig = {
+  slug: 'categories',
+  admin: {
+    useAsTitle: 'title',
+  },
   access: {
     read: ({ req }) => {
       // Allow Admin UI & logged-in users
@@ -16,12 +19,26 @@ export const Media: CollectionConfig = {
       return false
     },
   },
-  upload: true,
   fields: [
     {
-      name: 'alt',
+      name: 'title',
       type: 'text',
       required: true,
+      unique: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+    },
+    {
+      name: 'order',
+      type: 'number',
+      admin: {
+        description: 'Controls tab order in UI',
+      },
     },
   ],
 }

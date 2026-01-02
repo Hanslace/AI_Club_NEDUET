@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 
-interface Card3Props {
+interface ActivityCardProps {
   imageName: string;
   title: string;
   description: string;
 }
 
-export default function Card3({ imageName, title, description }: Card3Props) {
+export default function ActivityCard({ imageName, title, description }: ActivityCardProps) {
   const imageSrc = `/images/${imageName}`;
 
   return (

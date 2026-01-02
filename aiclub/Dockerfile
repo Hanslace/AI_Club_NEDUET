@@ -7,9 +7,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-# Copy Prisma and generate client
-COPY prisma ./prisma
-RUN npx prisma generate
 
 # Copy app source and build
 COPY . .
@@ -24,7 +21,7 @@ WORKDIR /app
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
 COPY --from=build /app/package*.json ./
-COPY --from=build /app/prisma ./prisma
+
 
 # Install only production deps
 RUN npm ci --omit=dev

@@ -1,4 +1,4 @@
-import {Card3} from "@/../components";
+import {ActivityCard} from "@/components";
 
 export default function ActivitySection() {
   const activities = [
@@ -31,7 +31,7 @@ export default function ActivitySection() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[3rem] mt-[8vh] justify-items-center w-full max-w-[1300px]">
         {activities.map((item, idx) => (
-          <Card3 key={idx} {...item} />
+          <ActivityCard key={idx} {...item} />
         ))}
       </div>
     </section>

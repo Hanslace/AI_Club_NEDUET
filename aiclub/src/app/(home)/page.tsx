@@ -1,4 +1,4 @@
-import { HeroSection, SponsorSection, AboutSection, ProjectSection,ActivitySection,TeamSection } from "@/../components/shared";
+import { HeroSection, SponsorSection, AboutSection, ProjectSection,ActivitySection,TeamSection } from "@/components/sections";
 
 export default function Home() {
   return (

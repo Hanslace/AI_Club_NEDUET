@@ -1,4 +1,4 @@
-import { } from "@/../components";
+import { } from "@/components";
 
 export default function ProjectsDetails() {
   return (
