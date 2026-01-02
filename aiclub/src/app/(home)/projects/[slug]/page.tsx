@@ -38,9 +38,10 @@ async function getProject(slug: string): Promise<Project> {
 export default async function ProjectDetails({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const project = await getProject(params.slug)
+  const { slug } = await params
+  const project = await getProject(slug)
 
   return (
     <div className="py-[4rem] px-[10vw]">
