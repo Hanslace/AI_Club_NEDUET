@@ -37,11 +37,11 @@ async function getProjects( limit: number): Promise<ProjectsResponse> {
 export default async function Projects({
   searchParams,
 }: {
-  searchParams: { page?: string; limit?: string }
+  searchParams: Promise<{ limit?: string }>
 }) {
-  const limit = Number(searchParams.limit ?? 6)
-
-  const { docs } = await getProjects(limit)
+  const { limit } = await searchParams
+  const limitNumber = Number.isFinite(Number(limit)) ? Number(limit) : 6
+  const { docs } = await getProjects(limitNumber)
 
   return (
     <div className="py-[4rem] px-[10vw]">
@@ -76,7 +76,7 @@ export default async function Projects({
 
       {/* Pagination */}
       <div className="flex gap-4 mt-[4rem] justify-center">
-        {limit === 6 && (
+        {limitNumber === 6 && (
           <Link
             href={`/projects?limit=100`}
             scroll={false}
