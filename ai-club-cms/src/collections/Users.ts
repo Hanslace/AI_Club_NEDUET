@@ -7,9 +7,24 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
-    read: ({ req }) => req.user?.role === 'admin',
-    create: ({ req }) => req.user?.role === 'admin',
-    update: ({ req }) => req.user?.role === 'admin',
+    read: ({ req, id }) => {
+      if (!req.user) return false
+      if (req.user.role === 'admin') return true
+      return req.user.id === id
+    },
+
+    create: ({ req }) => {
+      // bootstrap first user
+      if (!req.user) return true
+      return req.user.role === 'admin'
+    },
+
+    update: ({ req, id }) => {
+      if (!req.user) return false
+      if (req.user.role === 'admin') return true
+      return req.user.id === id
+    },
+
     delete: ({ req }) => req.user?.role === 'admin',
   },
   fields: [
