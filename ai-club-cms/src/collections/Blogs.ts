@@ -2,15 +2,15 @@ import type { CollectionConfig } from 'payload'
 
 export const Blogs: CollectionConfig = {
   slug: 'blogs',
+
   admin: {
     useAsTitle: 'title',
   },
+
   access: {
     read: ({ req }) => {
-      // Allow Admin UI & logged-in users
       if (req.user) return true
 
-      // Allow server-to-server access
       const auth = req.headers.get('authorization')
       if (auth === `Bearer ${process.env.CMS_READ_TOKEN}`) {
         return true
@@ -19,6 +19,7 @@ export const Blogs: CollectionConfig = {
       return false
     },
   },
+
   fields: [
     {
       name: 'title',
@@ -31,6 +32,22 @@ export const Blogs: CollectionConfig = {
       required: true,
       unique: true,
       index: true,
+    },
+    {
+      name: 'excerpt',
+      label: 'Excerpt',
+      type: 'textarea',
+      required: true,
+      admin: {
+        description: 'Short summary used in blog listings and SEO.',
+      },
+    },
+    {
+      name: 'featuredImage',
+      label: 'Featured Image',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
     },
     {
       name: 'categories',

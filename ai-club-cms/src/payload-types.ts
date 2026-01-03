@@ -127,6 +127,8 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
+  name: string;
+  profilePic?: (string | null) | Media;
   role: 'admin' | 'editor';
   updatedAt: string;
   createdAt: string;
@@ -173,6 +175,11 @@ export interface Blog {
   id: string;
   title: string;
   slug: string;
+  /**
+   * Short summary used in blog listings and SEO.
+   */
+  excerpt: string;
+  featuredImage?: (string | null) | Media;
   categories: (string | Category)[];
   content: {
     root: {
@@ -343,6 +350,8 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  profilePic?: T;
   role?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -386,6 +395,8 @@ export interface MediaSelect<T extends boolean = true> {
 export interface BlogsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  excerpt?: T;
+  featuredImage?: T;
   categories?: T;
   content?: T;
   publishedAt?: T;

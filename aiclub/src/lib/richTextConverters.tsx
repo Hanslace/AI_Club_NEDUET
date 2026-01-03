@@ -173,49 +173,71 @@ export const richTextConverters: JSXConverters = {
       const { image, text, imagePosition } =
         node.fields as unknown as ImageTextBlockFields
 
+      const imageEl = (
+        <Image
+          src={image.url}
+          alt={image.alt || ""}
+          width={image.width || 600}
+          height={image.height || 400}
+          className="w-full rounded-[16px]"
+        />
+      )
+
+      const textEl = (
+        <div className="prose max-w-none">
+          {nodesToJSX({ nodes: text.root.children })}
+        </div>
+      )
+
       return (
-        <section className="grid grid-cols-2 gap-8 items-center my-10">
-          {imagePosition === 'left' && (
-            <Image
-              src={image.url}
-              alt={image.alt || ''}
-              width={image.width || 600}
-              height={image.height || 400}
-            />
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-10">
+          {/* Mobile: image always first */}
+          {imageEl}
+          {textEl}
+
+          {/* Desktop override */}
+          {imagePosition === "left" && (
+            <>
+              <div className="hidden md:block">{imageEl}</div>
+              <div className="hidden md:block">{textEl}</div>
+            </>
           )}
 
-          <div className="prose max-w-none">
-            {nodesToJSX({ nodes: text.root.children })}
-          </div>
-
-          {imagePosition === 'right' && (
-            <Image
-              src={image.url}
-              alt={image.alt || ''}
-              width={image.width || 600}
-              height={image.height || 400}
-            />
+          {imagePosition === "right" && (
+            <>
+              <div className="hidden md:block">{textEl}</div>
+              <div className="hidden md:block">{imageEl}</div>
+            </>
           )}
         </section>
       )
     },
 
+
     imageGrid: ({ node }) => {
       const { images, columns } =
         node.fields as unknown as ImageGridBlockFields
 
+      const columnMap: Record<number, string> = {
+        2: "md:grid-cols-2",
+        3: "md:grid-cols-3",
+        4: "md:grid-cols-4",
+      }
+
       return (
         <section
-          className={`grid gap-6 my-10 grid-cols-${columns}`}
+          className={`grid grid-cols-1 gap-6 my-10 ${
+            columnMap[columns] ?? "md:grid-cols-2"
+          }`}
         >
           {images.map((item, i) => (
             <Image
               key={i}
               src={item.image.url}
-              alt={item.image.alt || ''}
+              alt={item.image.alt || ""}
               width={item.image.width || 500}
               height={item.image.height || 350}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto rounded-[16px] object-cover"
             />
           ))}
         </section>
