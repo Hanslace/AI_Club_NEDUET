@@ -3,18 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Media: CollectionConfig = {
   slug: 'media',
   access: {
-    read: ({ req }) => {
-      // Allow Admin UI & logged-in users
-      if (req.user) return true
-
-      // Allow server-to-server access
-      const auth = req.headers.get('authorization')
-      if (auth === `Bearer ${process.env.CMS_READ_TOKEN}`) {
-        return true
-      }
-
-      return false
-    },
+    read: () => true
   },
   upload: true,
   fields: [
